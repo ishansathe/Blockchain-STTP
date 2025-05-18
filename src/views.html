@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <title>Views</title>
+        <link rel="stylesheet" href="./output.css">
+    </head>
+    <body>
+        <div class="bg-emerald-100 min-h-screen font-sans">
+            <div class="px-45 pt-34">
+                <header class="text-center text-2xl">
+                    Match the signature with public key
+                </header>
+                <div class="flex">
+                    <section class="flex-1 border m-2 text-center">
+                        Public Keys
+                        <div id='pub_keys' class="m-1">
+                            <p>SampleKey</p>
+                        </div>
+                    </section>
+                    <section class="flex-1 border m-2 text-center">
+                        Signatures and Text.
+                        <div id='sign_text' class="m-1">
+                            <div class="inline-grid grid-cols-2 text-center items-center">
+                                <label for="sign" 
+                                class="sig_text">
+                                    Signature: 
+                                </label>
+                                <p id="sign" 
+                                class="sig_text ">
+                                    What if I wrote like a really big text. Will this still fit here?
+                                    Am I really going to fit all of that together? Will this work?
+                                </p>
+                                <label for="text" 
+                                class="sig_text">
+                                    Text: 
+                                </label>
+                                <p id="text" 
+                                class="sig_text ">
+                                    Infor.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
