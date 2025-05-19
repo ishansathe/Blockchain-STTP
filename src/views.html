@@ -3,45 +3,57 @@
     <head>
         <title>Views</title>
         <link rel="stylesheet" href="./output.css">
+        <link rel="stylesheet" href="./other.css">
     </head>
     <body>
-        <div class="bg-emerald-100 min-h-screen font-sans">
-            <div class="px-45 pt-34">
-                <header class="text-center text-2xl">
-                    Match the signature with public key
-                </header>
-                <div class="flex">
-                    <section class="flex-1 border m-2 text-center">
-                        Public Keys
-                        <div id='pub_keys' class="m-1">
-                            <p>SampleKey</p>
-                        </div>
-                    </section>
-                    <section class="flex-1 border m-2 text-center">
-                        Signatures and Text.
-                        <div id='sign_text' class="m-1">
-                            <div class="inline-grid grid-cols-2 text-center items-center">
-                                <label for="sign" 
-                                class="sig_text">
-                                    Signature: 
-                                </label>
-                                <p id="sign" 
-                                class="sig_text ">
-                                    What if I wrote like a really big text. Will this still fit here?
-                                    Am I really going to fit all of that together? Will this work?
-                                </p>
-                                <label for="text" 
-                                class="sig_text">
-                                    Text: 
-                                </label>
-                                <p id="text" 
-                                class="sig_text ">
-                                    Infor.
-                                </p>
+        <div class="bg-blue-800 min-h-screen font-sans">
+            <div class="px-38 pt-31 ">
+                <div class="bg-green-700 rounded-4xl border-2 border-white shadow-2xl">
+                    <header 
+                    class=" text-center text-3xl text-white font-semibold
+                    p-8">
+                        Match the signature with public key
+                    </header>
+                    <div class="flex pt-0 p-8">
+                        <section class="flex-1 m-2 p-2 
+                        text-center font-semibold text-black text-xl
+                        border-2 border-black rounded-2xl  
+                        bg-green-100">
+                            Public Keys
+                            <div id='pub_keys' class="m-1 font-light keys text-sm bg-">
+                                <key>SampleKey</key>
+                                <key>Another Sample.</key>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                        <section class="flex-1 m-2 p-2
+                        text-center text-black font-semibold text-xl
+                        border-2 border-black rounded-2xl
+                        bg-green-100">
+                            Signatures and Text.
+                            <div id='sign_text' class="m-1 font-light text-base">
+                                <section id="sig_text_box" class="bg-amber-400 displayWrapper">
+                                    <message>
+                                        Some Text.
+                                    </message>
+                                    <signature
+                                    class="">
+                                    e00fc4cf44684cd76c9110ed107992689s69e7dd960f988b1d3b6105c37658299f6347ebc92686c3ddcc0db00444b2ca2262374d5b3701720c017d90e82f4acac
+                                    </signature>
+                                </section>
+                                <section id="sig_text_box" class="bg-amber-400 displayWrapper">
+                                    <message>
+                                        Some Text.
+                                    </message>
+                                    <signature
+                                    class="">
+                                    e00fc4cf44684cd76c9110ed107992689s69e7dd960f988b1d3b6105c37658299f6347ebc92686c3ddcc0db00444b2ca2262374d5b3701720c017d90e82f4acac
+                                    </signature>
+                                </section>
+                            </div>
+                        </section>
+                    </div>
                 </div>
+                
             </div>
         </div>
         
