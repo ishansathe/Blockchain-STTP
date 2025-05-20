@@ -1,42 +1,55 @@
 import { Application } from "@oak/oak/application";
-import { Router } from "@oak/oak/router";
+import { Router, RouterContext } from "@oak/oak/router";
 import { send } from "@oak/oak/send";
-import { Status } from "jsr:@oak/commons@1/status";
-import { Body } from "@oak/oak/body";
+import * as cheerio from "https://esm.sh/cheerio@1.0.0";
 
 import fs from 'node:fs';
 
 const pubKey_array : string[] = [];
+const message_signature_array : {message: string, signature: string} [] = [];
+
+
+const viewPageData = fs.readFileSync('./src/views.html');
+const $o = cheerio.load(viewPageData);
+
+const homePageData = fs.readFileSync('./src/home.html');
+const $h = cheerio.load(homePageData);
 
 const router = new Router();
 
 router.get('/', (ctx) => {
     
-    ctx.response.body = fs.readFileSync('./src/home.html', 'utf-8');
+    // ctx.response.body = fs.readFileSync('./src/home.html', 'utf-8');
+    ctx.response.body = $h.html()
 })
 
-async function formReader(ok : Body) : Promise<FormData> {
-    return await ok.formData()
-}
+router.get('/views.html', (ctx) => {
 
-router.post('/',  (ctx) => {
+    // console.log(pubKey_array[0])
+    // console.log("Bo")
+    // $o('#pub_keys').after(`<key>${pubKey_array[-1]}</key>`)
+    ctx.response.body = $o.html();
+})
+
+
+router.post('/', (ctx) => {
     console.log("Received post request.");
     
     // const formData = await ctx.request.body.formData();
 
-    let formData: FormData;
-    formReader(ctx.request.body).then (
+     ctx.request.body.formData().then (
         (success) => {
-            formData = success
-            const pubKey = formData.get('publicKey')
+            const pubKey = success.get('publicKey')
             pubKey_array.push(String(pubKey))
+            console.log(pubKey_array)
         },
         (error) => {
             console.log(error);
         }
     )
 
-    ctx.response.body = fs.readFileSync('./src/home.html', 'utf-8');
+
+    ctx.response.body = $h.html();
 
 })
 
@@ -46,6 +59,12 @@ app.use(async (ctx, next) => {
 
     // Removing that special case.
     if(ctx.request.url.pathname != '/.well-known/appspecific/com.chrome.devtools.json') {
+
+        // const last_four_chars = ctx.request.url.pathname.slice(-4)
+        
+        // if(last_four_chars != ".html" && last_four_chars != '/') {
+        //     ctx.request.url.pathname += '.html';
+        // }
 
         // Special send function from oak which is used to serve static files.
         await send(ctx, ctx.request.url.pathname, {
